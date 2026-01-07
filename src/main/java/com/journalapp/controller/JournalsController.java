@@ -149,8 +149,19 @@ public class JournalsController {
         Button deleteBtn = new Button("Delete");
         deleteBtn.setStyle("-fx-background-color:#3498db; -fx-text-fill: white; -fx-font-size: 10px; -fx-cursor: hand; -fx-background-radius: 5;");
         deleteBtn.setOnAction(event -> {
-            if (onDeleteListener != null) onDeleteListener.accept(entry);
-            refreshJournalList(); // refresh after delete
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Entry");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete this entry?");
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == javafx.scene.control.ButtonType.OK) {
+                    Session.deleteEntry(entry.getId());
+                    refreshJournalList();
+
+                    System.out.println("Entry deleted: " + entry.getId());
+                }
+            });
         });
 
 
