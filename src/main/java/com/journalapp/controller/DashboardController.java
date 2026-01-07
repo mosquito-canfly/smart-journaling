@@ -1,7 +1,5 @@
 package main.java.com.journalapp.controller;
 
-package main.java.com.journalapp.controller;
-
 import main.java.com.journalapp.model.Entry;
 import main.java.com.journalapp.util.Session;
 import javafx.geometry.Insets;
