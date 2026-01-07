@@ -59,6 +59,18 @@ public class MainController extends Application {
             loadNewEntry();
         });
 
+        // Connect the Journal Page to Delete action
+        journalView.setOnDeleteAction(selectedEntry -> {
+            System.out.println("User clicked Delete on entry: " + selectedEntry.getDate());
+
+            // delete at database
+            Session.listEntries().remove(selectedEntry);
+            journalView.refreshJournalList();
+            // 2. 刷新 Journal 页面列表
+            // 假设你在 JournalsController 里加了 refresh 方法或者 getView 会重新加载
+            journalView.getView();  // 或调用一个 refresh 方法
+        });
+
         // Login
         Scene scene = new Scene(loginView.getView(), 1000, 700);
 

@@ -27,9 +27,44 @@ public class JournalsController {
     // Trigger Listener by clicking Edit
     private Consumer<Entry> onEditListener;
 
+    //Trigger Listener by clicking Delete
+    private Consumer<Entry> onDeleteListener;
+
+    // Container for journal cards
+    private VBox journalListContainer;
+
     // Method to let the Main app connect the "Edit" action
     public void setOnEditAction(Consumer<Entry> action) {
         this.onEditListener = action;
+    }
+
+    public void setOnDeleteAction(Consumer<Entry> action){
+        this.onDeleteListener = action;
+    }
+
+    //refresh journal page
+    public void refreshJournalList() {
+        if (journalListContainer == null) return;
+
+        journalListContainer.getChildren().clear();
+
+        if (Session.hasActiveUser()) {
+            List<Entry> myEntries = Session.listEntries();
+
+            if (myEntries != null && !myEntries.isEmpty()) {
+                Collections.reverse(myEntries);
+                for (Entry entry : myEntries) {
+                    journalListContainer.getChildren().add(createJournalCard(entry));
+                }
+            } else {
+                Label emptyLabel = new Label("Start writing your first journal ✨");
+                emptyLabel.setStyle("-fx-text-fill: #666; -fx-font-size: 14px; -fx-alignment: center;");
+                journalListContainer.setAlignment(Pos.CENTER);
+                journalListContainer.getChildren().add(emptyLabel);
+            }
+        } else {
+            journalListContainer.getChildren().add(new Label("Please log in to see your journals."));
+        }
     }
 
     public VBox getView() {
@@ -50,40 +85,13 @@ public class JournalsController {
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         // Container for the Cards
-        VBox journalListContainer = new VBox(15);
+        journalListContainer = new VBox(15);
         journalListContainer.setPadding(new Insets(10, 0, 0, 0));
         journalListContainer.setStyle("-fx-background-color: transparent;");
 
-        // Fetch Real Data
-        if (Session.hasActiveUser()) {
-            List<Entry> myEntries = Session.listEntries();
+// Upload data
+        refreshJournalList();
 
-            // Sort: Newest First
-            if (myEntries != null && !myEntries.isEmpty()) {
-
-                Collections.reverse(myEntries);
-
-                for (Entry entry : myEntries) {
-                    journalListContainer.getChildren().add(createJournalCard(entry));
-                }
-
-            } else {
-                Label emptyLabel = new Label(
-                        "Start writing your first journal ✨"
-                );
-                emptyLabel.setStyle(
-                        "-fx-text-fill: #666;" +
-                                "-fx-font-size: 14px;" +
-                                "-fx-alignment: center;"
-                );
-                journalListContainer.setAlignment(Pos.CENTER);
-                journalListContainer.getChildren().add(emptyLabel);
-            }
-
-
-        } else {
-            journalListContainer.getChildren().add(new Label("Please log in to see your journals."));
-        }
 
         scrollPane.setContent(journalListContainer);
         contentBox.getChildren().addAll(pageTitle, separator, scrollPane);
@@ -137,7 +145,16 @@ public class JournalsController {
             }
         });
 
-        header.getChildren().addAll(dateLabel, spacer, metaLabel, editBtn);
+        //Delete Button
+        Button deleteBtn = new Button("Delete");
+        deleteBtn.setStyle("-fx-background-color:#3498db; -fx-text-fill: white; -fx-font-size: 10px; -fx-cursor: hand; -fx-background-radius: 5;");
+        deleteBtn.setOnAction(event -> {
+            if (onDeleteListener != null) onDeleteListener.accept(entry);
+            refreshJournalList(); // refresh after delete
+        });
+
+
+        header.getChildren().addAll(dateLabel, spacer, metaLabel, editBtn, deleteBtn);
 
         // Content Preview
         String previewText = entry.getContent().replace("\n", " ");
