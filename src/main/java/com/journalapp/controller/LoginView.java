@@ -1,25 +1,25 @@
 package main.java.com.journalapp.controller;
 
-import main.java.com.journalapp.controller.MainController;
-import main.java.com.journalapp.util.Session;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import main.java.com.journalapp.controller.MainController;  // Navigator
+import main.java.com.journalapp.util.Session;               // Database handler
+import javafx.geometry.Pos;                                 // Tell VBox where to put its "children"
+import javafx.scene.control.Button;                         // For sign up action
+import javafx.scene.control.Label;                          // For non-editable text
+import javafx.scene.control.PasswordField;                  // Text field that hide the characters
+import javafx.scene.control.TextField;                      // Textbox (for email and username)
+import javafx.scene.layout.VBox;                            // Vertical box (stacks every element put inside it vertically)
+import javafx.scene.paint.Color;                            // Used to define specific colors using Java code
 
 public class LoginView {
     private final MainController mainController;
     private final VBox mainContainer;
 
+    // Made fields class-level variables so they can be accessed
     public LoginView(MainController mainController) {
         this.mainController = mainController;
 
-        // Main container
+        // Screen background
         mainContainer = new VBox();
-        // Just using a color style since CSS file might be missing
         mainContainer.setStyle("-fx-background-color: linear-gradient(to bottom right, #CFE3F3, #FAD0C4);");
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.setMaxWidth(Double.MAX_VALUE);
