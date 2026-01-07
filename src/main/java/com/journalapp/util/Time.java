@@ -12,10 +12,10 @@ public class Time {
         LocalTime localTime = LocalTime.now();
         int hour = localTime.getHour();
         if (hour >= 5 && hour < 12)
-            return "morning";
+            return "Morning";
         else if (hour >= 12 && hour < 18)
-            return "afternoon";
-        return "evening";
+            return "Afternoon";
+        return "Evening";
     }
     /**
      * Demonstrate the usage of getPeriodOfDay method.
