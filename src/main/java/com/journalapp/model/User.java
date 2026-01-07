@@ -3,6 +3,9 @@ package main.java.com.journalapp.model;
 import main.java.com.journalapp.util.Cipher;
 import main.java.com.journalapp.util.UserEntries;
 
+/**
+ *  Model representing a single user.
+ */
 public class User {
     private final String id;
     private final String username;
@@ -65,11 +68,5 @@ public class User {
                quote + getUsername() + quote + comma +
                quote + getEmail() + quote + comma +
                quote + Cipher.encode(getPassword()) + quote;
-    }
-
-    /**
-     * Demonstrate the use of this class
-     */
-    public static void main(String[] args) {
     }
 }

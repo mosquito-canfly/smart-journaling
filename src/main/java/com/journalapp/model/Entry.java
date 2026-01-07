@@ -2,6 +2,9 @@ package main.java.com.journalapp.model;
 
 import java.time.LocalDate;
 
+/**
+ *  Model representing a single entry
+ */
 public class Entry {
     private final String id;  // holds unique id for each entry
     private LocalDate date;

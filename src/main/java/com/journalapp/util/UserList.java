@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Manages user accounts and saves.
+ */
 public class UserList {
     private static final String USER_LIST_FILE = "./data/users.csv";
     private static final String HEADER = "id,username,email,password\n";

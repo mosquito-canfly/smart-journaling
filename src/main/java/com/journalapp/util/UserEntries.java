@@ -11,12 +11,15 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * Handles entry read and write operations.
+ */
 public class UserEntries {
     private static final String ENTRY_FOLDER = "./data/entries/";
     private static final String HEADER = "id,date,content,mood,weather\n";
 
     private final String path;
-    private ArrayList<Entry> entries = new ArrayList<>();
+    private final ArrayList<Entry> entries = new ArrayList<>();
 
     public UserEntries(String id) {
         this.path = ENTRY_FOLDER + id + ".csv";
