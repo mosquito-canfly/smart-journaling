@@ -87,11 +87,18 @@ public class MainController extends Application {
     }
 
     // Nav
-    public void showLoginView() { primaryStage.getScene().setRoot(loginView.getView()); }
-    public void showSignUpView() { primaryStage.getScene().setRoot(signUpView.getView()); }
+    public void showLoginView() {
+        loginView.clearFields();
+        primaryStage.getScene().setRoot(loginView.getView());
+    }
+
+    public void showSignUpView() {
+        signUpView.clearFields();
+        primaryStage.getScene().setRoot(signUpView.getView());
+    }
 
     public void showMainApp() {
-        mainAppLayout = null;
+        mainAppLayout = null
         createMainAppLayout();
         primaryStage.getScene().setRoot(mainAppLayout);
         loadDashboard();
@@ -100,6 +107,7 @@ public class MainController extends Application {
     public void logout() {
         Session.logout();
         mainAppLayout = null;
+        loginView.clearFields();
         showLoginView();
     }
 
@@ -215,8 +223,6 @@ public class MainController extends Application {
         }
     }
 
-
-
     // Helper to force buttons to snap to Left or Center immediately
     private void refreshButtonStyles() {
         String baseStyle = "-fx-background-color: transparent; -fx-text-fill: #1a1a1a; -fx-font-size: 16px; -fx-cursor: hand;";
@@ -303,8 +309,8 @@ public class MainController extends Application {
         btn.setTooltip(new Tooltip(textStr));
 
         return btn;
-    }
 
+    }
 
     public static void main(String[] args) {
         launch(args);

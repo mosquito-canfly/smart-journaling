@@ -14,6 +14,11 @@ public class LoginView {
     private final MainController mainController;
     private final VBox mainContainer;
 
+    // 1. Declare fields at the class level
+    private final TextField emailField;
+    private final PasswordField passField;
+    private final Label errorLabel;
+
     // Made fields class-level variables so they can be accessed
     public LoginView(MainController mainController) {
         this.mainController = mainController;
@@ -47,15 +52,15 @@ public class LoginView {
         // Input Fields Style (Slightly transparent white)
         String inputStyle = "-fx-background-color: rgba(255,255,255,0.7); -fx-background-radius: 5; -fx-padding: 10; -fx-font-size: 14px; -fx-border-color: rgba(0,0,0,0.1); -fx-border-radius: 5;";
 
-        TextField emailField = new TextField();
+        emailField = new TextField();
         emailField.setPromptText("Email address");
         emailField.setStyle(inputStyle);
 
-        PasswordField passField = new PasswordField();
+        passField = new PasswordField();
         passField.setPromptText("Password");
         passField.setStyle(inputStyle);
 
-        Label errorLabel = new Label("Incorrect credentials!");
+        errorLabel = new Label("Incorrect credentials!");
         errorLabel.setStyle("-fx-text-fill: red;");
         errorLabel.setVisible(false);
         errorLabel.setManaged(false);
@@ -96,6 +101,14 @@ public class LoginView {
         footerLabel.setStyle("-fx-text-fill: #888; -fx-font-size: 12px; -fx-padding: 20 0 0 0;");
 
         mainContainer.getChildren().addAll(formContainer, footerLabel);
+    }
+
+    // Helper method to clear the inputs
+    public void clearFields() {
+        emailField.clear();
+        passField.clear();
+        errorLabel.setVisible(false);
+        errorLabel.setManaged(false);
     }
 
     public VBox getView() {
