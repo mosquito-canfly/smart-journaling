@@ -10,6 +10,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
+import javafx.geometry.Rectangle2D;
 import java.util.Objects;
 
 import main.java.com.journalapp.util.Session;
@@ -59,8 +61,12 @@ public class MainController extends Application {
             loadNewEntry();
         });
 
-        // Login
-        Scene scene = new Scene(loginView.getView(), 1000, 700);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Scene scene = new Scene(
+                loginView.getView(),
+                screenBounds.getWidth() * 0.85,
+                screenBounds.getHeight() * 0.85
+        );
 
         try {
             Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/resources/app_icon(1).png")));
