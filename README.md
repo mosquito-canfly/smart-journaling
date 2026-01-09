@@ -1,6 +1,19 @@
 # Smart Journaling
 
-Project folder structure
+A simple journalling app built in Java and JavaFX for a school project.
+
+## Features
+- Edit and save daily journals
+- Sentiment analysis with HuggingFace model API call
+- Weekly and yearly summary of mood fluctuations
+- Profile switching and account management
+
+## Usage
+TODO
+
+<details>
+<summary>Project folder structure</summary>
+
 ```
 src/
 ├── main/
@@ -49,3 +62,4 @@ data/             // Saves
 └── .gitignore
 
 ```
+</details>
