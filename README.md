@@ -8,8 +8,19 @@ A simple journalling app built in Java and JavaFX for a school project.
 - Weekly and yearly summary of mood fluctuations
 - Profile switching and account management
 
-## Usage
-TODO
+## Preview
+![Login Page](docs/login.png)
+![Landing Page](docs/landing.png)
+![Journals Page](docs/journals.png)
+
+
+<details>
+<summary>Utility classes documentation</summary>
+
+- <a href=" https://invzfnc.github.io/journaling-util-docs/">Static site</a>
+- <a href=" https://github.com/invzfnc/journaling-util-docs">Source repo</a>
+
+</details>
 
 <details>
 <summary>Project folder structure</summary>
