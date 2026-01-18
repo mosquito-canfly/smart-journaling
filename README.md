@@ -16,10 +16,8 @@ A simple journalling app built in Java and JavaFX for a school project.
 
 <details>
 <summary>Utility classes documentation</summary>
-
-- <a href=" https://invzfnc.github.io/journaling-util-docs/">Static site</a>
-- <a href=" https://github.com/invzfnc/journaling-util-docs">Source repo</a>
-
+<a href="https://invzfnc.github.io/journaling-util-docs/">Static site</a>
+<a href="https://github.com/invzfnc/journaling-util-docs">Source repo</a>
 </details>
 
 <details>
